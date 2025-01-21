@@ -1,0 +1,10 @@
+{
+    "name": "Multi Chat",
+    "version": "0.0.1",
+    "description": "This plugin allows you to use the reference Django project to use CheshireCat in multichat - not development ready!",
+    "author_name": "Davide Bizzocchi",
+    "author_url": "https://github.com/davidebizzocchi",
+    "plugin_url": "https://github.com/davidebizzocchi/multicat",
+    "tags": "django, multichat, chat-interface, development, advance",
+    "thumb": ""
+}
