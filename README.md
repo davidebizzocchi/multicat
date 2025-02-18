@@ -4,7 +4,6 @@
 
 CheshireCat Plugin for Multi Chat Django Implementation
 
-```markdown
 # Multicat Plugin for Cheshire Cat
 
 **Enhance Your Cheshire Cat Experience with Native Multichat Support**
