@@ -1,26 +1,77 @@
 # Multicat
 
-[![awesome plugin](https://custom-icon-badges.demolab.com/static/v1?label=&message=awesome+plugin&color=383938&style=for-the-badge&logo=cheshire_cat_ai)](https://)  
-[![Awesome plugin](https://custom-icon-badges.demolab.com/static/v1?label=&message=Awesome+plugin&color=000000&style=for-the-badge&logo=cheshire_cat_ai)](https://)  
 [![awesome plugin](https://custom-icon-badges.demolab.com/static/v1?label=&message=awesome+plugin&color=F4F4F5&style=for-the-badge&logo=cheshire_cat_black)](https://)
 
-Write here all the useful information about your plugin.
+CheshireCat Plugin for Multi Chat Django Implementation
 
-This repository is the template to automate the release of official Cheshire Cat AI plugins. 
+```markdown
+# Multicat Plugin for Cheshire Cat
 
-## Usage
+**Enhance Your Cheshire Cat Experience with Native Multichat Support**
 
-1. Create a new repository clicking on the `Use this template` button.
-2. Clone your new repo directly in the Cat's `plugins` folder.
-3. Run the `setup.py` script:
+[![Plugin Version](https://img.shields.io/badge/version-0.0.1-blue)](https://github.com/davidebizzocchi/multicat)
+
+The Multicat plugin extends the Cheshire Cat AI framework with native multichat capabilities, enabling simultaneous independent conversations and file management per chat session - all without needing to fork the core project.
+
+## Key Features
+
+🚀 **Native Multichat Support**  
+Maintain separate conversation histories and working memories for each chat session
+
+📁 **Chat-Specific File Management**  
+Automatically handle different files and metadata for individual conversations
+
+🧠 **Enhanced Memory Management**  
+Custom endpoints for granular control over vector memories and conversation history
+
+🔌 **Zero-Friction Installation**  
+Works with official Cheshire Cat Docker images - no custom builds required
+
+🔮 **Multi-Agent Foundation**  
+Lays groundwork for future multi-agent capabilities (in development)
+
+## Quick Start
+
+### Prerequisites
+- Running Cheshire Cat instance (v1.0+)
+- Docker (if using containerized setup)
+
+### Installation
+1. Clone this repository into your Cheshire Cat plugins folder:
 ```bash
-python setup.py
+git clone https://github.com/davidebizzocchi/multicat.git plugins/multicat
 ```
-The script will prompt you to write the name of your plugin and make an initial setup setting the name in the files.
 
-4. Start developing!
+2. Restart your Cheshire Cat instance
 
-> **Important**
-> A new release of your plugin is triggered every time you set a new `version` in the `plugin.json` file.
-> Please, remember to set it correctly every time you want to release an update.
+## Core Functionality
 
+### Chat Management Endpoints
+
+| Endpoint                          | Method | Description                                  |
+|-----------------------------------|--------|----------------------------------------------|
+| `/memory/working_memories`        | GET    | List all active chat sessions                |
+| `/memory/working_memories/{chat_id}` | GET | Retrieve specific chat history               |
+| `/memory/conversation_history`    | DELETE | Clear current chat history                   |
+| `/memory/collections/{collection_id}/points/metadata` | PATCH | Bulk update memory metadata |
+
+## Django Integration
+
+For a ready-to-use chat interface with multichat support, use our companion Django project:  
+[DjangoMultiCat Repository](https://github.com/davidebizzocchi/DjangoMultiCat)
+
+Key features of the Django interface:
+
+- User-friendly chat management
+- Visual file organization per conversation
+- Session persistence
+- Easy integration with existing Cheshire Cat instances
+
+## Roadmap
+
+- [ ] Multi-agent conversation support
+- [x] Web interface integration
+- [x] Tool
+
+**Maintainer**: Davide Bizzocchi · [GitHub Profile](https://github.com/davidebizzocchi)
+**Support**: For issues and questions, please use [GitHub Discussions](https://github.com/davidebizzocchi/multicat/discussions)
