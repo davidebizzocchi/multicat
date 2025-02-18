@@ -1,10 +1,10 @@
 {
-    "name": "My plugin",
+    "name": "Multicat",
     "version": "0.0.1",
-    "description": "Description of my_plugin.",
-    "author_name": "Me",
-    "author_url": "https://mywebsite.me",
-    "plugin_url": "https://github.com/my_name/my_plugin",
-    "tags": "cat, template, example",
-    "thumb": "https://raw.githubusercontent.com/my_repo_path/my_plugin.png"
+    "description": "This plugin allows you to use the reference Django project to use CheshireCat in multichat.",
+    "author_name": "Davide Bizzocchi",
+    "author_url": "https://github.com/davidebizzocchi",
+    "plugin_url": "https://github.com/davidebizzocchi/multicat",
+    "tags": "django, multichat, chat-interface, development, advance",
+    "thumb": ""
 }
