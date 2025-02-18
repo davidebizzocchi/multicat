@@ -2,11 +2,9 @@
 
 [![awesome plugin](https://custom-icon-badges.demolab.com/static/v1?label=&message=awesome+plugin&color=F4F4F5&style=for-the-badge&logo=cheshire_cat_black)](https://)
 
-CheshireCat Plugin for Multi Chat Django Implementation
+## Multicat Plugin for Cheshire Cat
 
-# Multicat Plugin for Cheshire Cat
-
-**Enhance Your Cheshire Cat Experience with Native Multichat Support**
+### Bost Your Cheshire Cat with Native Multichat Support
 
 [![Plugin Version](https://img.shields.io/badge/version-0.0.1-blue)](https://github.com/davidebizzocchi/multicat)
 
@@ -31,21 +29,37 @@ Lays groundwork for future multi-agent capabilities (in development)
 
 ## Quick Start
 
-### Prerequisites
-- Running Cheshire Cat instance (v1.0+)
-- Docker (if using containerized setup)
-
 ### Installation
-1. Clone this repository into your Cheshire Cat plugins folder:
-```bash
-git clone https://github.com/davidebizzocchi/multicat.git plugins/multicat
-```
 
-2. Restart your Cheshire Cat instance
+1. Install the MultiCat plugin for registry (inside your admin)
+
+2. Activate the plugin
+
+3. Restart your Cheshire Cat instance
+
+Now, MultiCat will be loaded with the CheshireCat and do its magic.
 
 ## Core Functionality
 
-### Chat Management Endpoints
+### Cheshire Classes  
+
+This system uses two main classes:  
+
+- **FatherStrayCat**: Extends the `StrayCat` class and manages multiple chat instances (its "sons").  
+- **SonStrayCat**: Also extends `StrayCat` (a copy) and manages an individual chat, identified by `chat_id`.  
+
+## Decorators  
+
+The **@option** decorator allows overriding a common class by instantiating another class before it (overriding the `__new__` method).  
+
+Here’s the relevant code:  
+
+```python
+@option(StrayCat)
+class FatherStrayCat(StrayCat):
+```
+
+### Endpoints
 
 | Endpoint                          | Method | Description                                  |
 |-----------------------------------|--------|----------------------------------------------|
@@ -63,14 +77,11 @@ Key features of the Django interface:
 
 - User-friendly chat management
 - Visual file organization per conversation
-- Session persistence
 - Easy integration with existing Cheshire Cat instances
 
 ## Roadmap
 
 - [ ] Multi-agent conversation support
 - [x] Web interface integration
-- [x] Tool
-
-**Maintainer**: Davide Bizzocchi · [GitHub Profile](https://github.com/davidebizzocchi)
-**Support**: For issues and questions, please use [GitHub Discussions](https://github.com/davidebizzocchi/multicat/discussions)
+- [ ] Manage Tool
+- [ ] Tool creation endpoint
