@@ -14,7 +14,7 @@ from cat.memory.vector_memory_collection import VectorMemoryCollection
 from cat.rabbit_hole import RabbitHole
 from cat.looking_glass.stray_cat import MSG_TYPES
 
-from cat.plugins.multi_chat.decorators import option, get_true_class
+from cat.plugins.multicat.decorators import option, get_true_class
 from cat.utils import singleton
 
 
