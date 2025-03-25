@@ -107,7 +107,7 @@ class SonStrayCat(MyStrayCat, CommonStrayCat):
     def get_instructions(self):
         agent = agent_manager.get_agent(self.agent_id)
         if agent is not None:
-            agent.cast()
+            agent = agent.cast()
             return agent.instructions if not self.is_default_agent() else None
         
         return None
@@ -146,3 +146,4 @@ class SonStrayCat(MyStrayCat, CommonStrayCat):
     @history.setter
     def history(self, value):
         self.working_memory.history = value
+        self.update_working_memory_cache()
