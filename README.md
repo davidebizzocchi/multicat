@@ -4,69 +4,33 @@
 
 ## Multicat Plugin for Cheshire Cat
 
-### Bost Your Cheshire Cat with Native Multichat Support
+Transform Cheshire Cat into a complete multi-cat framework.
 
-[![Plugin Version](https://img.shields.io/badge/version-0.0.1-blue)](https://github.com/davidebizzocchi/multicat)
+Multicat extends the Cheshire Cat AI framework with native multichat and multiagent capabilities, enabling simultaneous independent conversations, file management per chat session, and the creation of custom agents.
 
-The Multicat plugin extends the Cheshire Cat AI framework with native multichat capabilities, enabling simultaneous independent conversations and file management per chat session - all without needing to fork the core project.
+By default declarative memory and episodic are separated for users.
 
-## Key Features
+**All without needing to modify the core project.**
 
-🚀 **Native Multichat Support**  
-Maintain separate conversation histories and working memories for each chat session
+### Key Features
 
-📁 **Chat-Specific File Management**  
-Automatically handle different files and metadata for individual conversations
+- **Multi-chat**: Manage multiple conversations simultaneously, keeping them completely separate
+- **Multi-agent**: Create and customize different agents with specific personalities (currently only via prompts)
+- **Conversation caching**: Automatic saving of conversations to continue at any time
+- **Complete API**: Dedicated endpoints for integration with other applications
+- **File management per chat**: Associate and organize specific documents for each conversation
 
-🧠 **Enhanced Memory Management**  
-Custom endpoints for granular control over vector memories and conversation history
-
-🔌 **Zero-Friction Installation**  
-Works with official Cheshire Cat Docker images - no custom builds required
-
-🔮 **Multi-Agent Foundation**  
-Lays groundwork for future multi-agent capabilities (in development)
+### Enhance Your Cheshire Cat with Native Multichat Support
 
 ## Quick Start
 
 ### Installation
 
-1. Install the MultiCat plugin for registry (inside your admin)
+1. Install the MultiCat plugin from the registry (within the admin panel)
+2. Activate the plugin from settings
+3. **Restart your Cheshire Cat instance**
 
-2. Activate the plugin
-
-3. Restart your Cheshire Cat instance
-
-Now, MultiCat will be loaded with the CheshireCat and do its magic.
-
-## Core Functionality
-
-### Cheshire Classes  
-
-This system uses two main classes:  
-
-- **FatherStrayCat**: Extends the `StrayCat` class and manages multiple chat instances (its "sons").  
-- **SonStrayCat**: Also extends `StrayCat` (a copy) and manages an individual chat, identified by `chat_id`.  
-
-## Decorators  
-
-The **@option** decorator allows overriding a common class by instantiating another class before it (overriding the `__new__` method).  
-
-Here’s the relevant code:  
-
-```python
-@option(StrayCat)
-class FatherStrayCat(StrayCat):
-```
-
-### Endpoints
-
-| Endpoint                          | Method | Description                                  |
-|-----------------------------------|--------|----------------------------------------------|
-| `/memory/working_memories`        | GET    | List all active chat sessions                |
-| `/memory/working_memories/{chat_id}` | GET | Retrieve specific chat history               |
-| `/memory/conversation_history`    | DELETE | Clear current chat history                   |
-| `/memory/collections/{collection_id}/points/metadata` | PATCH | Bulk update memory metadata |
+Now MultiCat will be loaded with Cheshire Cat and automatically start working.
 
 ## Django Integration
 
@@ -75,13 +39,129 @@ For a ready-to-use chat interface with multichat support, use our companion Djan
 
 Key features of the Django interface:
 
-- User-friendly chat management
-- Visual file organization per conversation
+- Intuitive chat management
+- Visual organization of files for each conversation
 - Easy integration with existing Cheshire Cat instances
+- Responsive and customizable user interface
+
+### Usage
+
+#### Basic Usage
+
+Once installed, you can:
+
+- When send a message specify a `chat_id`, the plugin will automatically create a new SonStrayCat and start a new chat.
+- When response the CatMessage contains the `chat_id`
+
+#### Working with Files and Metadata
+
+##### Uploading Files with Metadata
+
+Upload a file to the RabbitHole with specific metadata:
+
+```python
+# Python example
+metadata = {
+    "file_id": "unique_file_id",  # Unique identifier for your file
+    "chats_id": ["chat1", "chat2"],  # Associate with specific chats
+    "custom_field": "custom value"  # Any custom metadata
+}
+
+# Using requests
+import requests
+files = {"file": open("document.pdf", "rb")}
+payload = {"metadata": json.dumps(metadata)}
+response = requests.post(
+    "http://localhost:1865/rabbithole/",
+    files=files,
+    data=payload,
+    headers={"user_id": "your_user_id"}
+)
+```
+
+##### Associating Files with Chats
+
+Associate existing files with chats:
+
+```python
+# Add file to chats
+response = requests.patch(
+    "http://localhost:1865/memory/collections/declarative/points/edit_chat_ids?mode=add",
+    json={
+        "search_metadata": {"file_id": "unique_file_id"},
+        "chats_id": ["chat3", "chat4"]
+    },
+    headers={"user_id": "your_user_id"}
+)
+
+# Remove file from chats
+response = requests.patch(
+    "http://localhost:1865/memory/collections/declarative/points/edit_chat_ids?mode=remove",
+    json={
+        "search_metadata": {"file_id": "unique_file_id"},
+        "chats_id": ["chat1"]
+    },
+    headers={"user_id": "your_user_id"}
+)
+```
+
+##### Updating File Metadata
+
+Update metadata for existing files:
+
+```python
+response = requests.patch(
+    "http://localhost:1865/memory/collections/declarative/points/metadata",
+    json={
+        "search": {"file_id": "unique_file_id"},
+        "update": {"new_field": "new_value"}
+    },
+    headers={"user_id": "your_user_id"}
+)
+```
+
+##### Retrieving File Information
+
+Get file metadata:
+
+```python
+response = requests.get(
+    "http://localhost:1865/memory/collections/declarative/points/by_metadata",
+    params={"metadata": json.dumps({"file_id": "unique_file_id"})},
+    headers={"user_id": "your_user_id"}
+)
+```
+
+#### Using with Django Integration
+
+When using with DjangoMultiCat, file management is simplified:
+
+```python
+from cheshire_cat.client import connect_user
+
+cat = connect_user("user_id")
+
+# Upload file
+cat.upload_file(file_object, metadata={"file_id": "unique_id"})
+
+# Associate file with chats
+cat.add_file_to_chats(file_id, ["chat1", "chat2"])
+
+# Get file metadata
+file_data = cat.get_file_metadata(file_id)
+```
 
 ## Roadmap
 
-- [x] Multi-agent conversation support
+- [x] Multi-chat agent
+- [x] File-chat association: RabbitHole + endpoints
+- [x] Multi-agent: prompt hook + endpoints + stored
 - [x] Web interface integration
-- [ ] Manage Tool
-- [ ] Tool creation endpoint
+- [x] Re-build conversation: endpoint
+- [x] Cache: SonStrayCat
+- [ ] Capabilities for agents: plugins, vector search, ...
+- [ ] Custom tool creation
+
+## Contributions
+
+Contributions and feedback are welcome! Open an issue or a pull request on the repository.
