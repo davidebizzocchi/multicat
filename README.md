@@ -36,10 +36,10 @@ Now MultiCat will be loaded with Cheshire Cat and automatically start working.
 
 ## Django Integration
 
-For a ready-to-use chat interface with multichat support, use our companion Django project:  
+For a ready-to-use chat interface with multichat support, use my companion Django project:  
 [DjangoMultiCat Repository](https://github.com/davidebizzocchi/DjangoMultiCat)
 
-Key features of the Django interface:
+Key features
 
 - Intuitive chat management
 - Visual organization of files for each conversation
