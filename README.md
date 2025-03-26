@@ -12,15 +12,15 @@ By default declarative memory and episodic are separated for users.
 
 **All without needing to modify the core project.**
 
-[👨‍🍳 Cook Book](docs/README.md)
+For all your recipes [👨‍🍳 Cook Book](docs/README.md)
 
 ### Key Features
 
-- **Multi-chat**: Manage multiple conversations simultaneously, keeping them completely separate
-- **Multi-agent**: Create and customize different agents with specific personalities (currently only via prompts)
-- **Conversation caching**: Automatic saving of conversations to continue at any time
-- **Complete API**: Dedicated endpoints for integration with other applications
-- **File management per chat**: Associate and organize specific documents for each conversation
+- 💬 **Multi-chat**: Manage multiple conversations simultaneously, keeping them completely separate
+- 🤖 **Multi-agent**: Create and customize different agents with specific personalities (currently only via prompts)
+- 🗄️ **Conversation caching**: Automatic saving of conversations to continue at any time
+- 🐝 **Complete API**: Dedicated endpoints for integration with other applications
+- 🗂️ **File management per chat**: Associate and organize specific documents for each conversation
 
 ### Enhance Your Cheshire Cat with Native Multichat Support
 
