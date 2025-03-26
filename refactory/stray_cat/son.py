@@ -3,15 +3,13 @@ from typing import Any, List, Union
 from cat.auth.permissions import AuthUserInfo
 
 from cat.convo.messages import CatMessage
-from cat.log import log
 
 from cat.looking_glass.stray_cat import StrayCat
 from cat.memory.working_memory import WorkingMemory
-from cat.cache.cache_item import CacheItem
-
 from cat.looking_glass.stray_cat import MSG_TYPES
 
-# Common
+from cat.cache.cache_item import CacheItem
+
 from cat.plugins.multicat.refactory.stray_cat.common import CommonStrayCat
 
 from cat.plugins.multicat.agents.crud import manager as agent_manager
@@ -19,6 +17,7 @@ from cat.plugins.multicat.agents.crud import manager as agent_manager
 
 stray_cat_attr = {k: v for k, v in StrayCat.__dict__.items()}
 MyStrayCat: StrayCat = type("MyStrayCat", StrayCat.__bases__, stray_cat_attr)
+
 
 # A perfect son
 class SonStrayCat(MyStrayCat, CommonStrayCat):
