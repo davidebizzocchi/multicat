@@ -12,6 +12,8 @@ By default declarative memory and episodic are separated for users.
 
 **All without needing to modify the core project.**
 
+[👨‍🍳 Cook Book](docs/README.md)
+
 ### Key Features
 
 - **Multi-chat**: Manage multiple conversations simultaneously, keeping them completely separate
@@ -46,12 +48,23 @@ Key features of the Django interface:
 
 ### Usage
 
+Read the [👨‍🍳 Cook Book](docs/README.md).
+
 #### Basic Usage
 
-Once installed, you can:
+For send a message with a specific **chat_id**
 
-- When send a message specify a `chat_id`, the plugin will automatically create a new SonStrayCat and start a new chat.
-- When response the CatMessage contains the `chat_id`
+- When sending a the message, specify a `chat_id`. The plugin will automatically create a new SonStrayCat and start a new chat.
+- The response will include the associated `chat_id`.
+
+**Example**
+
+```json
+{
+    "text": "Hello",
+    "chat_id": "first"
+}
+```
 
 #### Working with Files and Metadata
 
@@ -89,7 +102,7 @@ response = requests.patch(
     "http://localhost:1865/memory/collections/declarative/points/edit_chat_ids?mode=add",
     json={
         "search_metadata": {"file_id": "unique_file_id"},
-        "chats_id": ["chat3", "chat4"]
+        "chats_id": ["chat1", "chat4"]
     },
     headers={"user_id": "your_user_id"}
 )
@@ -105,50 +118,18 @@ response = requests.patch(
 )
 ```
 
-##### Updating File Metadata
+#### Agents
 
-Update metadata for existing files:
+For agent you must specify the `agent_id` when send a message
 
-```python
-response = requests.patch(
-    "http://localhost:1865/memory/collections/declarative/points/metadata",
-    json={
-        "search": {"file_id": "unique_file_id"},
-        "update": {"new_field": "new_value"}
-    },
-    headers={"user_id": "your_user_id"}
-)
-```
+**Example**
 
-##### Retrieving File Information
-
-Get file metadata:
-
-```python
-response = requests.get(
-    "http://localhost:1865/memory/collections/declarative/points/by_metadata",
-    params={"metadata": json.dumps({"file_id": "unique_file_id"})},
-    headers={"user_id": "your_user_id"}
-)
-```
-
-#### Using with Django Integration
-
-When using with DjangoMultiCat, file management is simplified:
-
-```python
-from cheshire_cat.client import connect_user
-
-cat = connect_user("user_id")
-
-# Upload file
-cat.upload_file(file_object, metadata={"file_id": "unique_id"})
-
-# Associate file with chats
-cat.add_file_to_chats(file_id, ["chat1", "chat2"])
-
-# Get file metadata
-file_data = cat.get_file_metadata(file_id)
+```json
+{
+    "text": "Hellooo",
+    "chat_id": "first",
+    "agent_id": "welcome"
+}
 ```
 
 ## Roadmap
