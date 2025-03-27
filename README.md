@@ -14,7 +14,7 @@ By default declarative memory and episodic are separated for users.
 
 **All without needing to modify the core project.**
 
-For all your recipes [👨‍🍳 Cook Book](docs/README.md)
+For all your recipes [👨‍🍳 Cook Book](docs/readme.md)
 
 ### Key Features
 

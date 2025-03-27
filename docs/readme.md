@@ -42,10 +42,6 @@ If you're new to Multicat, we recommend starting with these resources:
 2. Learn how to create [Custom Agents](agents.md) for different purposes
 3. Explore how to [manage files](endpoints/collections.md) in different chats
 
-## Integration Examples
-
-To integrate Multicat with your applications, see the Python examples throughout the documentation or check the [main README](../README.md) for a quick integration guide.
-
 ## Additional Resources
 
 - [GitHub Repository](https://github.com/davidebizzocchi/multicat)
