@@ -18,9 +18,7 @@ from cat.plugins.multicat.cache.sons import FatherSonCache
 
 
 # Cache
-CACHE = UserFatherCache(
-    max_items=CheshireCat().mad_hatter.get_plugin().load_settings().max_users
-)
+CACHE = None
 
 
 # Adapt the StrayCat to curate the SonStrayCat (the perfect father)
@@ -28,6 +26,13 @@ CACHE = UserFatherCache(
 class FatherStrayCat(StrayCat, CommonStrayCat):
     sons: "UserFatherCache"
     bevoled_son_chat_id = "default"
+
+    def _initialize_cache(self):
+        """Initialize the global cache"""
+        global CACHE
+        CACHE = UserFatherCache(
+            max_items=self.settings.max_users
+        )
 
     def _get_user_cache(self, user_id: str) -> UserFatherCache:
         """Get the user cache"""
@@ -73,7 +78,11 @@ class FatherStrayCat(StrayCat, CommonStrayCat):
         user_data: AuthUserInfo
     ):
         log.warning("FatherStrayCat created")
-        
+
+        # Initialize cache if needed
+        if CACHE is None:
+            self._initialize_cache()
+
         # user data
         self.__user_id = user_data.name # TODOV2: use id
         self.__user_data = user_data
