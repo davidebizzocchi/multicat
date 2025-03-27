@@ -2,7 +2,7 @@
 
 [![awesome plugin](https://custom-icon-badges.demolab.com/static/v1?label=&message=awesome+plugin&color=F4F4F5&style=for-the-badge&logo=cheshire_cat_black)](https://)
 
-<img src="./logo.png" alt="MultiCat" width="200" height="200">
+<img src="./logo.png" alt="MultiCat" width="400" height="400">
 
 ## Multicat Plugin for Cheshire Cat
 
