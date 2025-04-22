@@ -15,7 +15,7 @@ from cat import utils
 from cat.log import log
 
 from cat.plugins.multicat.refactory.stray_cat.common import CommonStrayCat
-from cat.plugins.multicat.agents.CatAgents.main_agent import MainAgentLimited
+from cat.plugins.multicat.agents.cat_agents.main_agent import MainAgentLimited
 
 from cat.plugins.multicat.agents.crud import manager as agent_manager
 
