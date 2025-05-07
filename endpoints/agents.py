@@ -4,8 +4,8 @@ from fastapi import Request, HTTPException, Depends
 
 from cat.auth.permissions import AuthPermission, AuthResource
 from cat.auth.connection import HTTPAuth
-from cat.auth.permissions import 
 from cat.mad_hatter.decorators import endpoint
+
 from cat.looking_glass.stray_cat import StrayCat
 from cat.log import log
 
