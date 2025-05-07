@@ -6,6 +6,7 @@ from cat.auth.permissions import AuthUserInfo
 from cat.convo.messages import CatMessage, EmbedderModelInteraction
 
 from cat.looking_glass.stray_cat import StrayCat
+
 from cat.memory.working_memory import WorkingMemory
 from cat.looking_glass.stray_cat import MSG_TYPES
 
@@ -284,3 +285,18 @@ class SonStrayCat(MyStrayCat, CommonStrayCat):
 
         # hook to modify/enrich retrieved memories
         self.mad_hatter.execute_hook("after_cat_recalls_memories", cat=self)
+
+    @property
+    def _llm(self):
+        if self.is_default_agent():
+            return super()._llm
+        
+        llm_name = self.agent.llm_name
+        if llm_name is None:
+            return super()._llm
+
+        llm = self.get_llm_by_name(llm_name, database_only=False, save=True, cast=True)
+        if llm is None:
+            return super()._llm
+
+        return llm
